@@ -24,7 +24,7 @@ export default function IndexScreen() {
       resizeMode="cover"
     >
       <View style={styles.overlay}>
-        <Text style={styles.title}>Welcome to niggatron</Text>
+        <Text style={styles.title}>HollyWOAH!</Text>
 
         <TouchableOpacity style={styles.button} onPress={() => router.push("/login")}>
           <Text style={styles.buttonText}>Login</Text>
