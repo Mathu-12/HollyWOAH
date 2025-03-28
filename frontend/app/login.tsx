@@ -47,11 +47,14 @@ export default function LoginScreen() {
     try {
       const { data } = await loginUser(email, password);
       if (data.token) {
-        await AsyncStorage.setItem("token", data.token);
+        await AsyncStorage.setItem("authToken", data.token);
+        await AsyncStorage.setItem("userName", data.user.name); // Store user name
+        await AsyncStorage.setItem("userEmail", data.user.email); // Store user email
+// ✅ Updated Token Key
         setSuccessModal(true);
         setTimeout(() => {
           setSuccessModal(false);
-          router.push("../homepage");
+          router.push("/homepage"); // ✅ Redirect to Homepage
         }, 2000);
       } else {
         setEmailError("Invalid login credentials.");
@@ -135,12 +138,11 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     backgroundColor: "rgba(255, 255, 255, 0.1)",
     textAlign: "center",
-    // Remove any shadow effect
     shadowColor: "transparent",
     shadowOpacity: 0,
     shadowOffset: { width: 0, height: 0 },
     shadowRadius: 0,
-    elevation: 0, // Ensures no shadow on Android
+    elevation: 0,
   },
   error: {
     color: "#FF4C4C",
@@ -157,7 +159,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
-    // Remove any shadow effect
     shadowColor: "transparent",
     shadowOpacity: 0,
     shadowOffset: { width: 0, height: 0 },
@@ -184,4 +185,3 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
 });
-
