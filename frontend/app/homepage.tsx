@@ -76,7 +76,7 @@ export default function HomePage() {
   const handleLogout = async () => {
     try {
       await AsyncStorage.removeItem("authToken");
-      router.replace("/index"); // Correct navigation after logout
+      router.replace("../login"); // Correct navigation after logout
     } catch (error) {
       console.error("Logout failed:", error);
     }

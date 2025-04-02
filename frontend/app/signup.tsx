@@ -62,7 +62,7 @@ export default function SignupScreen() {
       }).start();
       setTimeout(() => {
         setSuccessModal(false);
-        router.push("/homepage");
+        router.push("/login");
       }, 2000);
     } catch (error) {
       console.error("Signup Error:", error);

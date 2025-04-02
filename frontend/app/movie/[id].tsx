@@ -22,6 +22,10 @@ export default function MovieDetails() {
         const movieRes = await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${TMDB_API_KEY}`);
         setMovie(movieRes.data);
         fetchTrailer(movieRes.data.title);
+
+        const storedMovies = await AsyncStorage.getItem("watchLater");
+        const movieList = storedMovies ? JSON.parse(storedMovies) : [];
+        setIsFavorite(movieList.includes(movieRes.data.title));
       } catch (error) {
         console.error("Error fetching movie details:", error);
       } finally {
@@ -45,16 +49,20 @@ export default function MovieDetails() {
   }, [id]);
 
   const toggleFavorite = async () => {
-    setIsFavorite(!isFavorite);
     try {
       const storedMovies = await AsyncStorage.getItem("watchLater");
-      const movieList = storedMovies ? JSON.parse(storedMovies) : [];
-      if (!movieList.includes(movie.title)) {
+      let movieList = storedMovies ? JSON.parse(storedMovies) : [];
+
+      if (isFavorite) {
+        movieList = movieList.filter((title) => title !== movie.title);
+      } else {
         movieList.push(movie.title);
-        await AsyncStorage.setItem("watchLater", JSON.stringify(movieList));
       }
+
+      await AsyncStorage.setItem("watchLater", JSON.stringify(movieList));
+      setIsFavorite(!isFavorite);
     } catch (error) {
-      console.error("Error saving movie:", error);
+      console.error("Error updating watch later list:", error);
     }
   };
 
