@@ -12,8 +12,8 @@ import { StatusBar } from "react-native";
 
 const { width, height } = Dimensions.get("window");
 
-const TMDB_API_KEY = "d307827794b91eeb1837e75f30b470d2";
-const BASE_URL = "https://api.themoviedb.org/3/movie";
+const TMDB_API_KEY = "your api key";
+const BASE_URL = "your base url";
 
 const fetchMovies = async (category) => {
   try {
@@ -76,7 +76,7 @@ export default function HomePage() {
   const handleLogout = async () => {
     try {
       await AsyncStorage.removeItem("authToken");
-      router.replace("../login"); // Correct navigation after logout
+      router.replace("../index"); // Correct navigation after logout
     } catch (error) {
       console.error("Logout failed:", error);
     }
