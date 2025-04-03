@@ -19,7 +19,7 @@ export default function IndexScreen() {
 
   return (
     <ImageBackground
-      source={require("../assets/images/index.jpeg")} // Using local image
+      source={require("../assets/images/..")} // Using local image
       style={styles.background}
       resizeMode="cover"
     >
