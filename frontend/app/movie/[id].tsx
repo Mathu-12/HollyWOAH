@@ -83,10 +83,6 @@ export default function MovieDetails() {
               <Text style={styles.trailerText}>Watch Trailer</Text>
             </TouchableOpacity>
           )}
-
-          <TouchableOpacity style={styles.heartButton} onPress={toggleFavorite}>
-            <Text style={{ fontSize: 24 }}>{isFavorite ? "❤️" : "🤍"}</Text>
-          </TouchableOpacity>
         </View>
       </ScrollView>
     </ImageBackground>
